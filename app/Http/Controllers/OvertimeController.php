@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Overtime;
+use App\Project;
 use Illuminate\Http\Request;
 
 class OvertimeController extends Controller
@@ -24,7 +25,7 @@ class OvertimeController extends Controller
      */
     public function create()
     {
-        $list = Overtime::get()->all();
+        $list = Project::get()->all();
         return view('overtime.create')->with('list', $list);
     }
 
@@ -37,23 +38,26 @@ class OvertimeController extends Controller
     public function store(Request $request)
     {
     
-     $this->validate([
+    //validate inputs
+     $this->validate(request(),[
 
-        'projects' => 'required',
+        'project' => 'required',
         'date' => 'required',
         'hours' => 'required',
-        'desc' => 'required',
+        'description' => 'required',
 
      ]);
 
+     //insert into database 
 
-        Overtime::create([
-            $projects = request('projects'),
-            $date = request('date'),
-            $hours = request('hours'),
-            $desc = request('desc'),
+     $over = new Overtime;
+     $over->project = request('project');
+     $over->date = request('date');
+     $over->hours = request('hours');
+     $over->description = request('description');
+     $over->save();
 
-        ]);
+return redirect('overtime/show');
 
     }
 

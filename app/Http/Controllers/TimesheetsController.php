@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Timesheets;
+use App\Project;
 use Illuminate\Http\Request;
 
 class TimesheetsController extends Controller
@@ -20,7 +21,8 @@ class TimesheetsController extends Controller
     
     public function create()
     {
-        return view('time.create');
+        $list = Project::get()->all();
+        return view('time.create')->with('list', $list);
     }
 
     /**
@@ -31,7 +33,27 @@ class TimesheetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+    //validate inputs
+     $this->validate(request(),[
+
+        'project' => 'required',
+        'date' => 'required',
+        'hours' => 'required',
+        'description' => 'required',
+
+     ]);
+
+     //insert into database 
+
+     $time = new Timesheets;
+     $time->project = request('project');
+     $time->date = request('date');
+     $time->hours = request('hours');
+     $time->description = request('description');
+     $time->save();
+
+     return redirect('time/show');
     }
 
     /**
@@ -42,7 +64,8 @@ class TimesheetsController extends Controller
      */
     public function show(Timesheets $timesheets)
     {
-        //
+        $time = Timesheets::get()->all();
+       return view('time/show',compact('time'));
     }
 
     /**
