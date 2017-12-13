@@ -30,6 +30,12 @@
 
 	@endforeach
 	</table>
+  <p>Go back to previous pages</p>
+  <ul>
+    <li><a href="{{ url('time/create') }}">Fill</a></li>
+    <li><a href="{{ url('time') }}">Home</a></li>
+    
+  </ul>
 </div>
 
 @endsection

@@ -15,7 +15,8 @@ class TimesheetsController extends Controller
      */
     public function index()
     {
-        return view('time.index');
+         $time = Timesheets::get()->all();
+        return view('time.index')->with('time', $time);
     }
 
     

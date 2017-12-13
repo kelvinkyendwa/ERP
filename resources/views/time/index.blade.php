@@ -4,7 +4,7 @@
 <br><br>
 <div class="container">
 	
-<h3>Timesheets Application</h3>
+<h3 style="color: teal; ">Timesheets Application</h3>
 <hr>	
 <article>
 	<h4>Welcome, {{ Auth::user()->name }}</h4>
@@ -13,7 +13,11 @@
 </article>
 
 <a href="{{ url ('time/create')}}" class="btn btn-lg btn-info"> Fill Timesheet</a>
-	
-</div>
+<a href="{{ url ('time/show')}}" class="btn btn-lg btn-success"> View Timesheets</a>
+<br><br>
+<hr>
 
-@endsection`
+	<h3>Recent Posts</h3>
+			@include('partials.ptable')
+</div>
+@endsection

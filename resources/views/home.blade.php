@@ -11,7 +11,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h4 class="card-title">Time Sheets</h4>
-                        <p class="card-text">Fill in the time for the projects you have worked on.</p>
+                        <p class="card-text">Fill in the time for the projects.</p>
                         <a href="{{ url ('/time') }}" class="btn btn-primary">Fill</a>
                       </div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="card">
                       <div class="card-body">
                         <h4 class="card-title">Logistics</h4>
-                        <p class="card-text">Apply for Taxis or other form of transportation for office purposes.</p>
+                        <p class="card-text">Apply for transportation for office purposes.</p>
                         <a href="{{ url ('/logistics') }}" class="btn btn-primary">Apply</a>
                       </div>
                     </div>

@@ -15,7 +15,8 @@ class OvertimeController extends Controller
      */
     public function index()
     {
-        return view('overtime.index');
+         $time = Overtime::get()->all();
+        return view('overtime.index')->with('time',$time);
     }
 
     /**
