@@ -59,7 +59,7 @@ class OvertimeController extends Controller
      $over->description = request('description');
      $over->save();
 
-return redirect('overtime/show');
+return redirect('over/show');
 
     }
 
@@ -84,8 +84,8 @@ return redirect('overtime/show');
      */
     public function edit(Overtime $overtime)
     {
-        $list = Project::get()->all();
-       return view('overtime.edit')->with('list', $list);
+      $list = Project::get()->all();
+       return view('overtime.edit', compact('overtime'))->with('list', $list);
     }
 
     /**

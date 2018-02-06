@@ -1,4 +1,5 @@
-<div class="form-group">
+
+	<div class="form-group">
 			<label for="project">Select Project</label>
 			<select name="project" id="project" class="form-control">
 				@foreach ($list as $lis)
@@ -9,21 +10,19 @@
 </div>
 
 		<div class="form-group">
-			<label for="date">Date</label>
-			<input type="date" name="date" placeholder="Select Date" class="form-control">
+				{{  Form::label('date', 'Date') }}
+				{{  Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
 		</div>
 		<div class="form-group">
-			<label for="hours">Extra Hours worked on project</label>
-			<input type="text" name="hours" placeholder="key in hours" class="form-control">
+				{{  Form::label('hours', 'Hours Worked') }}
+			  {{  Form::selectRange('hours', 1, 8 ,['class' => 'form-control'] ) }}
+
 		</div>
 		<div class="form-group">
-			<label for="description">Description</label>
-			<textarea class="form-control" name="description"></textarea>
+			{{  Form::label('description', 'Description') }}
+			{{ Form::textarea('description',null ,['class' => 'form-control']) }}
+
 		</div>
 
 		<button type="Submit" class="btn btn-info">Submit</button>
 		<button class="btn btn-warning" type="Reset">Reset</button>
-
-{!! Form::open(['url' => 'over/']) !!}
-
-{!! Form::close() !!}

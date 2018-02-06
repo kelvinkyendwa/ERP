@@ -4,12 +4,11 @@
 <div class="container">
 	<h3>Edit an Entry</h3>
 	@include('layouts.errors')
-	<form action="/over" method="POST">
-		{{ csrf_field() }}
-		@include('partials.timeform')
+		{!! Form::model($overtime,array('route' => ['over.update',$overtime->id], 'method' => 'PUT')) !!}
+			{{ csrf_field() }}
+			@include('partials.timeform')
 
-	</form>
-	</form>
+		{{!! Form::close() !!}}
 
 </div>
 

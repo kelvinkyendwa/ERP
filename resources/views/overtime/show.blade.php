@@ -23,7 +23,10 @@
       <td>{{$item->project}}</td>
       <td>{{$item->description}}</td>
       <td>{{$item->date}}</td>
-      <td><a href="{{$item->id}}/edit" class="btn btn-warning">Edit</a></td>
+
+			<td>{{ link_to_route('over.edit','Edit',[$item->id],['class'=> 'btn btn-warning']) }}</td>
+			<td><a href="{{$item->id}}/delete" class="btn btn-danger">Delete</a></td>
+
     </tr>
 
   </tbody>

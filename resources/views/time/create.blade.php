@@ -3,19 +3,20 @@
 @section('content')
 <br><br>
 <div class="container">
-	
+
 <h3>Timesheets Application</h3>
 <hr>
 
-	<form action="/time" method="POST">
+	{!! Form::open(['url' => 'over/']) !!}
+
 		{{ csrf_field() }}
-		
+
 		@include('partials.timeform')
 
-	</form>
+{!! Form::close() !!}
 
 	<hr>
-	
+
 </div>
 
 @endsection
