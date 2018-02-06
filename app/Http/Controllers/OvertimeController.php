@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Overtime;
 use App\Project;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class OvertimeController extends Controller
 {
@@ -38,7 +39,7 @@ class OvertimeController extends Controller
      */
     public function store(Request $request)
     {
-    
+
     //validate inputs
      $this->validate(request(),[
 
@@ -49,7 +50,7 @@ class OvertimeController extends Controller
 
      ]);
 
-     //insert into database 
+     //insert into database
 
      $over = new Overtime;
      $over->project = request('project');
@@ -71,6 +72,7 @@ return redirect('overtime/show');
     public function show(Overtime $overtime)
     {
         $over = Overtime::get()->all();
+        // $over = Overtime::where('date', Carbon::today());
        return view('overtime.show',compact('over'));
     }
 
@@ -82,7 +84,8 @@ return redirect('overtime/show');
      */
     public function edit(Overtime $overtime)
     {
-       return view('overtime.edit');
+        $list = Project::get()->all();
+       return view('overtime.edit')->with('list', $list);
     }
 
     /**

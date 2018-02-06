@@ -5,7 +5,7 @@
 						<option value="{{$lis->project}}">{{$lis->project}}</option>
 				@endforeach
 			</select>
-			
+
 </div>
 
 		<div class="form-group">
@@ -23,3 +23,7 @@
 
 		<button type="Submit" class="btn btn-info">Submit</button>
 		<button class="btn btn-warning" type="Reset">Reset</button>
+
+{!! Form::open(['url' => 'over/']) !!}
+
+{!! Form::close() !!}

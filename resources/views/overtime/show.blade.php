@@ -3,7 +3,8 @@
 @section('content')
 
 <div class="container">
-	<h3>Overtime details</h3>
+	<h3>All Overtime Entries</h3>
+	<hr>
 	<table class="table table-dark">
   <thead>
     <tr>
@@ -24,7 +25,7 @@
       <td>{{$item->date}}</td>
       <td><a href="{{$item->id}}/edit" class="btn btn-warning">Edit</a></td>
     </tr>
-   
+
   </tbody>
 
 	@endforeach
