@@ -1,9 +1,9 @@
 
 	<div class="form-group">
 			<label for="project">Select Project</label>
-			<select name="project" id="project" class="form-control">
+			<select name="project_id" id="project_id" class="form-control">
 				@foreach ($list as $lis)
-						<option value="{{$lis->project}}">{{$lis->project}}</option>
+						<option value="{{$lis->id}}">{{$lis->project}}</option>
 				@endforeach
 			</select>
 

@@ -15,7 +15,8 @@ class CreateOvertimesTable extends Migration
     {
         Schema::create('overtimes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('project');
+            $table->integer('project_id');
+            $table->integer('user_id');
             $table->timestamp('date');
             $table->integer('hours');
             $table->text('description');

@@ -6,13 +6,22 @@ use App\Timesheets;
 use App\Project;
 use Illuminate\Http\Request;
 
+
+
 class TimesheetsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+
      */
+
+    public function __construct()
+        {
+            $this->middleware('auth')->except(['index']);
+        }
+        
     public function index()
     {
          $time = Timesheets::get()->all();
@@ -38,7 +47,7 @@ class TimesheetsController extends Controller
     //validate inputs
      $this->validate(request(),[
 
-        'project' => 'required',
+        'project_id' => 'required',
         'date' => 'required',
         'hours' => 'required',
         'description' => 'required',
@@ -47,13 +56,10 @@ class TimesheetsController extends Controller
 
      //insert into database 
 
-     $time = new Timesheets;
-     $time->project = request('project');
-     $time->date = request('date');
-     $time->hours = request('hours');
-     $time->description = request('description');
-     $time->save();
-
+        auth()->user()->post_timesheet(
+                new Timesheets(request(['project_id', 'date' , 'hours', 'description']))
+        );
+    
      return redirect('time/show');
     }
 
@@ -65,6 +71,7 @@ class TimesheetsController extends Controller
      */
     public function show(Timesheets $timesheets)
     {
+
         $time = Timesheets::get()->all();
        return view('time/show',compact('time'));
     }
@@ -75,9 +82,11 @@ class TimesheetsController extends Controller
      * @param  \App\Timesheets  $timesheets
      * @return \Illuminate\Http\Response
      */
-    public function edit(Timesheets $timesheets)
+    public function edit($id)
     {
-        //
+        $list = Project::get()->all();
+        $time = Timesheets::find($id);
+        return view('time/edit',compact('time','list'));
     }
 
     /**
@@ -87,9 +96,20 @@ class TimesheetsController extends Controller
      * @param  \App\Timesheets  $timesheets
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Timesheets $timesheets)
+    public function update(Request $request, $id)
     {
-        //
+        $time = Timesheets::find($id);
+        
+        //insert into database 
+ 
+             $time->project_id = $request->project_id;
+             $time->user_id = auth()->user()->id;
+             $time->date = $request->date;
+             $time->hours = $request->hours;
+             $time->description = $request->description;
+             $time->save();
+
+     return redirect('time/show');
     }
 
     /**
@@ -98,8 +118,10 @@ class TimesheetsController extends Controller
      * @param  \App\Timesheets  $timesheets
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Timesheets $timesheets)
+    public function destroy($id)
     {
-        //
+        $time = Timesheets::find($id);
+                $time->delete();
+         return redirect()->back();
     }
 }

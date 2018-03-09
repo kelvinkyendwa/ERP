@@ -21,11 +21,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-//LogisticsController
+//Logistics
 
+Route::get('/logistics',  function () {
+    return view('logistics/index');
+})->name('logistics');
 
 
 //LeaveController
+
 
 
 
@@ -33,6 +37,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('time', 'TimesheetsController');
 
+
 //OvertimeController
 Route::resource('over', 'OvertimeController');
-// Route::post('/over', 'OvertimeController@store');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

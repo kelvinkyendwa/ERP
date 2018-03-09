@@ -32,7 +32,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                   Easy Erp System
+                  Voyager Exists
                 </div>
 
                <!--  <div class="links">

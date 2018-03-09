@@ -14,6 +14,12 @@ class OvertimeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+        {
+            $this->middleware('auth')->except(['index']);
+        }
+        
     public function index()
     {
          $time = Overtime::get()->all();
@@ -43,21 +49,19 @@ class OvertimeController extends Controller
     //validate inputs
      $this->validate(request(),[
 
-        'project' => 'required',
+        
+        'project_id' => 'required',
         'date' => 'required',
         'hours' => 'required',
         'description' => 'required',
 
      ]);
 
-     //insert into database
+     //insert into database 
 
-     $over = new Overtime;
-     $over->project = request('project');
-     $over->date = request('date');
-     $over->hours = request('hours');
-     $over->description = request('description');
-     $over->save();
+        auth()->user()->post_overtime(
+                new Overtime(request(['project_id', 'date' , 'hours', 'description']))
+        );
 
 return redirect('over/show');
 

@@ -7,7 +7,7 @@
 <h3>Timesheets Application</h3>
 <hr>
 
-	{!! Form::open(['url' => 'over/']) !!}
+	{!! Form::open(['url' => 'time/']) !!}
 
 		{{ csrf_field() }}
 

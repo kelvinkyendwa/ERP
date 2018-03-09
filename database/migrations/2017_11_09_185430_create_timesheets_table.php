@@ -15,10 +15,12 @@ class CreateTimesheetsTable extends Migration
     {
         Schema::create('timesheets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('project');
+            $table->integer('project_id');
+            $table->integer('user_id');
             $table->timestamp('date');
             $table->integer('hours');
             $table->text('description');
+            $table->boolean('authorised')->default(0);
             $table->timestamps();
         });
     }
